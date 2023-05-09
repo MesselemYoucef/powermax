@@ -29,8 +29,8 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: theme(),
         onGenerateRoute: AppRouter.onGenerate,
-        initialRoute: HomeScreen.routeName,
-        home: const HomeScreen(),
+        initialRoute: SplashScreen.routeName,
+     
       ),
     );
   }
