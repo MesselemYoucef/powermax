@@ -30,7 +30,6 @@ class MyApp extends StatelessWidget {
         theme: theme(),
         onGenerateRoute: AppRouter.onGenerate,
         initialRoute: SplashScreen.routeName,
-     
       ),
     );
   }

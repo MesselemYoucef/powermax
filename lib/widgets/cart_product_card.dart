@@ -5,7 +5,9 @@ import 'package:powermax/models/product_model.dart';
 
 class CartProductCard extends StatelessWidget {
   final Product product;
-  const CartProductCard({super.key, required this.product});
+  final int quantity;
+  const CartProductCard(
+      {super.key, required this.product, required this.quantity});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +55,7 @@ class CartProductCard extends StatelessWidget {
                     icon: const Icon(Icons.remove_circle),
                   ),
                   Text(
-                    "1",
+                    "$quantity",
                     style: Theme.of(context).textTheme.displaySmall,
                   ),
                   IconButton(
