@@ -10,7 +10,7 @@ import 'blocs/wishlist/wishlist_bloc.dart';
 import 'config/app_router.dart';
 import 'config/theme.dart';
 
-Future<void> main() async {
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
@@ -29,9 +29,10 @@ class MyApp extends StatelessWidget {
           create: (_) => CartBloc()..add(CartStarted()),
         ),
         BlocProvider(
-            create: (_) =>
-                CategoryBloc(categoryRepository: CategoryRepository())
-                  ..add(LoadCategories())),
+          create: (_) => CategoryBloc(
+            categoryRepository: CategoryRepository(),
+          )..add(LoadCategories()),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
                     enableInfiniteScroll: false,
                     autoPlay: false,
                   ),
-                  items: Category.categories
+                  items: state.categories
                       .map((category) => HeroCarouselCard(category: category))
                       .toList(),
                 );
