@@ -26,10 +26,11 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
             UpdateCategories(categories),
           ),
         );
+        emit(const CategoryLoaded());
   }
 
   void _mapUpdateCategoriesToState(
       UpdateCategories event, Emitter<CategoryState> emit) {
-    CategoryLoaded(categories: event.categories);
+    emit(CategoryLoaded(categories: event.categories));
   }
 }
