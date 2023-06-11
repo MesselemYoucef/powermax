@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:powermax/blocs/cart/cart_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:powermax/blocs/category/category_bloc.dart';
+import 'package:powermax/blocs/product/product_bloc.dart';
 import 'package:powermax/repositories/category/category_repository.dart';
+import 'package:powermax/repositories/product/product_repository.dart';
 import 'screens/screens.dart';
 import 'blocs/wishlist/wishlist_bloc.dart';
 
@@ -32,6 +34,11 @@ class MyApp extends StatelessWidget {
           create: (_) => CategoryBloc(
             categoryRepository: CategoryRepository(),
           )..add(LoadCategories()),
+        ),
+        BlocProvider(
+          create: (_) => ProductBloc(
+            productRepository: ProductRepository(),
+          )..add(LoadProducts()),
         ),
       ],
       child: MaterialApp(

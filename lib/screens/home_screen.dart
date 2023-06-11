@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:powermax/blocs/category/category_bloc.dart';
+import 'package:powermax/blocs/product/product_bloc.dart';
 import '../widgets/widgets.dart';
 import 'package:powermax/models/models.dart';
 
@@ -51,10 +52,25 @@ class HomeScreen extends StatelessWidget {
           ),
           //Recommended Products
           const SectionTitle(title: "RECOMANDED"),
-          ProductCarousel(
-              products: Product.products
-                  .where((product) => product.isRecommended == true)
-                  .toList()),
+          BlocBuilder<ProductBloc, ProductState>(
+            builder: (context, state) {
+              if (state is ProductLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              if (state is ProductLoaded) {
+                return ProductCarousel(
+                  products: Product.products
+                      .where((product) => product.isRecommended == true)
+                      .toList(),
+                );
+              } else {
+                return const Text("Something Went Wrong");
+              }
+            },
+          ),
+
           //Popular Products
           const SectionTitle(title: "POPULAR"),
           ProductCarousel(
