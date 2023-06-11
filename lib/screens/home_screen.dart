@@ -61,7 +61,7 @@ class HomeScreen extends StatelessWidget {
               }
               if (state is ProductLoaded) {
                 return ProductCarousel(
-                  products: Product.products
+                  products: state.products
                       .where((product) => product.isRecommended == true)
                       .toList(),
                 );
@@ -73,10 +73,24 @@ class HomeScreen extends StatelessWidget {
 
           //Popular Products
           const SectionTitle(title: "POPULAR"),
-          ProductCarousel(
-              products: Product.products
-                  .where((product) => product.isPopular == true)
-                  .toList()),
+          BlocBuilder<ProductBloc, ProductState>(
+            builder: (context, state) {
+              if (state is ProductLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              if (state is ProductLoaded) {
+                return ProductCarousel(
+                  products: state.products
+                      .where((product) => product.isPopular == true)
+                      .toList(),
+                );
+              } else {
+                return const Text("Something Went Wrong");
+              }
+            },
+          ),
         ],
       ),
     );
