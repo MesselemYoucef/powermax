@@ -5,7 +5,6 @@ import '../screens/screens.dart';
 
 class AppRouter {
   static Route onGenerate(RouteSettings settings) {
-    print("This is the route: ${settings.name}");
     switch (settings.name) {
       case '/':
         return HomeScreen.route();
